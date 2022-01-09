@@ -41,6 +41,6 @@ emailRouter.post('/', function(req, res){
           res.end('Mail Sent Successfully');
         }
       });
-      res.render('mail-form', { title: 'Send Mail with nodejs' });
+      // res.render('mail-form', { title: 'Send Mail with nodejs' });
 })
 module.exports = emailRouter;
