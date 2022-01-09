@@ -3,12 +3,12 @@ var emailRouter = express.Router();
 var nodemailer = require('nodemailer');
 
 
-emailRouter.get('/home', function(req, res, next) {
-  res.render('mail-form', { title: 'Send Mail with nodejs' });
+emailRouter.get('/', function(req, res, next) {
+  res.render('mail-form', { title: 'Send Mail' });
 });
 
 
-emailRouter.post('/mailer', function(req, res){
+emailRouter.post('/', function(req, res){
    
     var receiver = req.body.to;
     var subject = req.body.subject;
@@ -34,9 +34,11 @@ emailRouter.post('/mailer', function(req, res){
       
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
+          console.log('Something went wrong');
+          res.end('Something went wrong');
         } else {
-          console.log('Email was sent successfully: ' + info.response);
+          console.log('Mail Sent Successfully');
+          res.end('Mail Sent Successfully');
         }
       });
       res.render('mail-form', { title: 'Send Mail with nodejs' });
